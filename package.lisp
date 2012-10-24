@@ -6,5 +6,8 @@
   (:use #:common-lisp
         #:parenscript)
   (:export
+   pchain
+   fchain
+   slot-setf
    ps-inline-return
    ps-inline-return*))
