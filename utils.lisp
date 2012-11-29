@@ -58,11 +58,19 @@ allow chaining like j-query."
                 ,obj)
               ,object)))
 
-#|(ps-once-only (object)
+
+(defpsmacro fpchain (object &rest chains)
+  "generate a pseudo-chain of method calls of given object
+and return the object. for use of js prototypes that do not
+allow chaining like j-query."
+  (ps-once-only (object)
     (append '(progn)
             (mapcar (lambda (x) `(chain ,object ,x))
                     chains)
-            `(,object)))|#
+            `(,object))))
+
+
+
 
 ;; may be should be named with-object-setf
 (defpsmacro slot-setf (object &rest slot-pairs)
