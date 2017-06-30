@@ -21,7 +21,7 @@
      (when it ,@body)))
 
 
-(import-macros-from-lisp
+(ps:import-macros-from-lisp
    'alexandria:when-let
    'alexandria:when-let*
    'alexandria:if-let)
@@ -38,7 +38,7 @@
 ;;})();"
  
 (defpsmacro pchain (object &rest chains)
-  "generate pseudo-chain of method calls of object. use in iterative code only.
+  "generate pseudo-chain of method calls of object. use in imperative code only.
 for use of js prototypes that do not allow chaining like j-query."
   (ps-once-only (object)
     `(progn
@@ -62,7 +62,8 @@ allow chaining like j-query."
 (defpsmacro fpchain (object &rest chains)
   "generate a pseudo-chain of method calls of given object
 and return the object. for use of js prototypes that do not
-allow chaining like j-query."
+allow chaining like j-query.
+Deprecated use fchain."
   (ps-once-only (object)
     (append '(progn)
             (mapcar (lambda (x) `(chain ,object ,x))
